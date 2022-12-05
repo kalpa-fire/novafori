@@ -1,29 +1,41 @@
-# Next.js + Jest
+# NovaFori technical test
 
-This example shows how to configure Jest to work with Next.js.
+This repo contains my solution to the NovaFori technical test. I spent around 4 hours on the challenge. As instructed by Alex, I have done only the frontend part of the task. 
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript.
 
-## How to Use
+## Scripts
 
-Quickly get started using [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app#readme)!
-
-In your terminal, run the following command:
+To run the app in a dev environment, install the dependencies with `npm install` and run the following command:
 
 ```bash
-npx create-next-app --example with-jest with-jest-app
+npm run dev
 ```
+
+Alternatively, you can build and start the app with the following commands
 
 ```bash
-yarn create next-app --example with-jest with-jest-app
+npm run build
+npm run start
 ```
 
-```bash
-pnpm create next-app --example with-jest with-jest-app
-```
-
-## Run Jest Tests
+This application was created following a test-driven approach. The command to run the tests is
 
 ```bash
 npm test
 ```
+
+## Questions 
+
+- What technical and functional assumptions did you make when implementing
+your solution?
+
+Being a frontend application, this assumes there will be no need to persist todo items on refresh. If that was a requirement, I would either use local/session storage or create a fully-fledged application with a backend and a database
+
+- Briefly explain your technical design and why do you think is the best
+approach to this problem.
+
+I attempted to follow a test-driven approach in completing this challenge -- I wouldn't go so far as to call it the best approach, but in my experience it tends to produce software that is cleaner and easier to maintain.
+
+In terms of technical design, I've decided to have a stateful ToDoList component and break parts of the UI logic into two stateless subcomponents for better readability and maintainability. 
+
+I prioritised accessibility and functionality over design in this task. There is some basic styling using both a global stylesheet (still with a couple of Next defaults) and scoped CSS modules for the components.

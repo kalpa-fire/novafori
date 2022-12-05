@@ -17,4 +17,12 @@ describe('To-do list', ()=>{
         await userEvent.click(screen.getByRole('button', { name: 'Add' }));
         expect(screen.getByText('Complete a technical test using TDD')).toBeInTheDocument();
     })
+
+    it('Allows user to mark a task as completed', async ()=>{
+        render(<ToDoList />)
+        await userEvent.type(screen.getByLabelText('Add task'), 'Some task');
+        await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+        await userEvent.click(screen.getByText('Some task'));
+        expect(screen.getByText('Some task')).toHaveStyle({'text-decoration': 'line-through' })
+    })
 })

@@ -1,6 +1,6 @@
 import React from 'react';
 import uuid from 'react-uuid';
-import ToDoItem from './to-do-item';
+import SubList from './sub-list';
 import { Todo } from './types';
 
 export default function ToDoList() {
@@ -20,9 +20,13 @@ export default function ToDoList() {
         setTodos(t => [...t.slice(0, itemIndex), { ...t[itemIndex],  completed: !t[itemIndex].completed}, ...t.slice(itemIndex + 1)]);
     }
 
+    const componentTitleId = React.useId();
+    const pendingSectionTitleId = React.useId();
+    const completedSectionTitleId = React.useId();
+
     return (
-        <section aria-labelledby="to-do-title">
-            <h1 id="to-do-title">To-do List</h1>
+        <section aria-labelledby={componentTitleId}>
+            <h1 id={componentTitleId}>To-do List</h1>
             <form>
             <label>
                 Add task
@@ -30,13 +34,13 @@ export default function ToDoList() {
             </label>
             <button type="button" onClick={addTodo}>Add</button>
             </form>
-            <section aria-labelledby="to-do-pending">
-                <h2 id="to-do-pending">Pending</h2>
-                {todos.filter(item => !item.completed).map(({completed, id, text})=>(<ToDoItem completed={completed} text={text} id={id} toggleComplete={()=>toggleComplete(id)}/>))}
+            <section aria-labelledby={pendingSectionTitleId}>
+                <h2 id={pendingSectionTitleId}>Pending</h2>
+                <SubList filterFunction={item => !item.completed} items={todos} toggleCompleteFunction={toggleComplete} />
             </section>
-            <section aria-labelledby="to-do-completed">
-                <h2 id="to-do-completed">Completed</h2>
-                {todos.filter(item => item.completed).map(({completed, id, text})=>(<ToDoItem completed={completed} text={text} id={id} toggleComplete={()=>toggleComplete(id)}/>))}
+            <section aria-labelledby={completedSectionTitleId}>
+                <h2 id={completedSectionTitleId}>Completed</h2>
+                <SubList filterFunction={item => item.completed} items={todos} toggleCompleteFunction={toggleComplete} />
             </section>
         </section>
         

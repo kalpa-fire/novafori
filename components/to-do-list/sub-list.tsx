@@ -1,5 +1,6 @@
 import ToDoItem from './to-do-item';
 import { Todo } from './types';
+import styles from './to-do.module.css';
 
 interface SubListProps {
     items: Todo[];
@@ -8,9 +9,11 @@ interface SubListProps {
 }
 
 export default function SubList({items, toggleCompleteFunction, filterFunction }: SubListProps){
-    return <>
+    return <ul className={styles.sublist}>
         {items.filter(filterFunction).map(({completed, id, text})=>(
-            <ToDoItem completed={completed} text={text} key={id} id={id} toggleComplete={()=>toggleCompleteFunction(id)}/>)
-        )}
-    </>
+            <li key={id}>
+                <ToDoItem completed={completed} text={text} id={id} toggleComplete={()=>toggleCompleteFunction(id)}/>
+            </li>    
+        ))}
+    </ul>
 }

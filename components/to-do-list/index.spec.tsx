@@ -13,14 +13,14 @@ describe('To-do list', ()=>{
 
     it('Allows users to add new tasks', async ()=>{
         render(<ToDoList />)
-        await userEvent.type(screen.getByLabelText('Add task'), 'Complete a technical test using TDD');
+        await userEvent.type(screen.getByLabelText('Add task:'), 'Complete a technical test using TDD');
         await userEvent.click(screen.getByRole('button', { name: 'Add' }));
         expect(screen.getByText('Complete a technical test using TDD')).toBeInTheDocument();
     })
 
     it('Allows user to mark a task as completed', async ()=>{
         render(<ToDoList />)
-        await userEvent.type(screen.getByLabelText('Add task'), 'Some task');
+        await userEvent.type(screen.getByLabelText('Add task:'), 'Some task');
         await userEvent.click(screen.getByRole('button', { name: 'Add' }));
         await userEvent.click(screen.getByText('Some task'));
         expect(screen.getByText('Some task')).toHaveStyle({'text-decoration': 'line-through' })
@@ -28,7 +28,7 @@ describe('To-do list', ()=>{
 
     it('Allows user to mark a completed task as pending', async ()=>{
         render(<ToDoList />)
-        await userEvent.type(screen.getByLabelText('Add task'), 'Some task');
+        await userEvent.type(screen.getByLabelText('Add task:'), 'Some task');
         await userEvent.click(screen.getByRole('button', { name: 'Add' }));
         await userEvent.click(screen.getByText('Some task'));
         await userEvent.click(screen.getByText('Some task'));

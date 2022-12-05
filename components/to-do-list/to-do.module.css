@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.sublist_container {
+    display: flex;
+    width: 80vw;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.sublist {
+    padding-inline-start: 1.5rem;
+}
+
+.todo_item {
+    border: none;
+    font-size: 1.25rem;
+    background-color: inherit;
+    box-shadow: none;
+    display: block;
+    padding: 0.25rem;
+}
+
+.button {
+    font-size: 1.25rem;
+}
+
+.label {
+    font-size: 1.25rem;
+}
+
+.input {
+    margin: 0 0.5rem;
+    font-size: 1.25rem;
+}
+
+@media (max-width: 500px) {
+    .sublist_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
